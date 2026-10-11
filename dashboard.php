@@ -101,7 +101,24 @@ $statement->closeCursor();
                             echo htmlspecialchars($activity['notes']);
                             ?>
                         </p>
-                    <?php endif; ?>
+                                       <?php endif; ?>
+<a href="edit_activity.php?id=<?php
+echo $activity['activityID'];
+?>">Edit</a>
+                    <form
+                        action="delete_activity.php"
+                        method="post"
+                        onsubmit="return confirm('Delete this activity?');"
+                    >
+                        <input
+                            type="hidden"
+                            name="activityID"
+                            value="<?php
+                            echo $activity['activityID'];
+                            ?>"
+                        >
+                        <button type="submit">Delete</button>
+                    </form>
                 </article>
             <?php endforeach; ?>
         <?php endif; ?>
