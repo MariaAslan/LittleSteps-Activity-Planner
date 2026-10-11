@@ -80,6 +80,7 @@ $statement->closeCursor();
             <a href="add_child.php">+ Add Child</a>
             <a href="add_activity.php">+ Add Activity</a>
             <a href="add_reminder.php">+ Add Reminder</a><a href="calendar.php">Calendar</a>
+            <a href="manage_children.php">Manage Children</a>
         </nav>
 
         <h3>Activities</h3>
