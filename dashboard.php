@@ -31,6 +31,28 @@ $statement->bindValue(
 $statement->execute();
 $activities = $statement->fetchAll(PDO::FETCH_ASSOC);
 $statement->closeCursor();
+$query = 'SELECT reminders.reminderID,
+                 reminders.reminderDateTime,
+                 activities.activityName,
+                 children.childName
+          FROM reminders
+          INNER JOIN activities
+              ON reminders.activityID = activities.activityID
+          INNER JOIN children
+              ON activities.childID = children.childID
+          WHERE children.userID = :userID
+            AND reminders.isCompleted = 0
+          ORDER BY reminders.reminderDateTime';
+
+$statement = $db->prepare($query);
+$statement->bindValue(
+    ':userID',
+    $_SESSION['userID'],
+    PDO::PARAM_INT
+);
+$statement->execute();
+$reminders = $statement->fetchAll(PDO::FETCH_ASSOC);
+$statement->closeCursor();
 ?>
 
 <!DOCTYPE html>
@@ -56,6 +78,7 @@ $statement->closeCursor();
         <nav>
             <a href="add_child.php">+ Add Child</a>
             <a href="add_activity.php">+ Add Activity</a>
+            <a href="add_reminder.php">+ Add Reminder</a>
         </nav>
 
         <h3>Activities</h3>
@@ -122,6 +145,38 @@ echo $activity['activityID'];
                 </article>
             <?php endforeach; ?>
         <?php endif; ?>
+        <h3>Upcoming Reminders</h3>
+
+<?php if (count($reminders) === 0): ?>
+    <p>No reminders added yet.</p>
+<?php else: ?>
+    <?php foreach ($reminders as $reminder): ?>
+        <article>
+            <h4>
+                <?php
+                echo htmlspecialchars(
+                    $reminder['activityName']
+                );
+                ?>
+            </h4>
+
+            <p>
+                <?php
+                echo htmlspecialchars(
+                    $reminder['childName']
+                );
+                ?>
+                •
+                <?php
+                echo date(
+                    'M d, Y - g:i A',
+                    strtotime($reminder['reminderDateTime'])
+                );
+                ?>
+            </p>
+        </article>
+    <?php endforeach; ?>
+<?php endif; ?>
     </main>
 </body>
 </html>
