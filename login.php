@@ -35,6 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Log In - LittleSteps</title>
+    <link rel="stylesheet" href="CSS/style.css">
 </head>
 <body>
     <main>

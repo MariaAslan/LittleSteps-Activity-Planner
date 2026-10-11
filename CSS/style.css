@@ -1,0 +1,183 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f3f8f2;
+    color: #24372b;
+}
+
+header {
+    background-color: #ffffff;
+    padding: 22px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #dfe7e1;
+}
+
+header h1 {
+    margin: 0;
+    color: #52876a;
+}
+
+main {
+    width: 90%;
+    max-width: 1100px;
+    margin: 40px auto;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    color: #24372b;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 25px 0;
+}
+
+a {
+    color: #47795d;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a {
+    background-color: #52876a;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 8px;
+}
+
+article {
+    background-color: #ffffff;
+    border: 1px solid #dfe7e1;
+    border-radius: 14px;
+    padding: 20px;
+    margin-bottom: 16px;
+}
+
+article h4 {
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+
+article p {
+    color: #68778c;
+}
+
+main > form {
+    max-width: 600px;
+    background-color: #ffffff;
+    border: 1px solid #dfe7e1;
+    border-radius: 16px;
+    padding: 30px;
+}
+
+label {
+    display: block;
+    margin-top: 18px;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cfd9d2;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+button {
+    background-color: #52876a;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 11px 18px;
+    margin-top: 15px;
+    margin-right: 8px;
+    cursor: pointer;
+}
+
+button:hover,
+nav a:hover {
+    background-color: #3e6c52;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+}
+
+th,
+td {
+    border: 1px solid #dfe7e1;
+    padding: 10px;
+    vertical-align: top;
+}
+
+th {
+    background-color: #52876a;
+    color: #ffffff;
+}
+
+.activity {
+    background-color: #e7f2e9;
+    border-radius: 6px;
+    padding: 6px;
+    margin-top: 6px;
+    font-size: 13px;
+}
+
+.error {
+    color: #b3261e;
+}
+
+@media (max-width: 700px) {
+    header {
+        padding: 18px 5%;
+    }
+
+    main {
+        width: 94%;
+        margin-top: 25px;
+    }
+
+    nav {
+        flex-direction: column;
+    }
+
+    nav a {
+        text-align: center;
+    }
+
+    th,
+    td {
+        padding: 5px;
+        font-size: 12px;
+    }
+
+    td {
+        height: 80px;
+    }
+
+    main > form {
+        padding: 20px;
+    }
+}

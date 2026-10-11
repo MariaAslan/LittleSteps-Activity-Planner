@@ -7,6 +7,7 @@ require_once('database.php');
 <head>
     <meta charset="UTF-8">
     <title>LittleSteps</title>
+    <link rel="stylesheet" href="CSS/style.css">
 </head>
 <body>
     <h1>LittleSteps</h1>

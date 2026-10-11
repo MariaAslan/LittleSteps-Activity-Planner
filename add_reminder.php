@@ -98,6 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Add Reminder - LittleSteps</title>
+    <link rel="stylesheet" href="CSS/style.css">
 </head>
 <body>
     <main>

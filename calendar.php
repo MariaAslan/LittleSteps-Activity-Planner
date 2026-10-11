@@ -69,6 +69,7 @@ $nextMonth->modify('+1 month');
 <head>
     <meta charset="UTF-8">
     <title>Calendar - LittleSteps</title>
+    <link rel="stylesheet" href="CSS/style.css">
 
     <style>
         table {
