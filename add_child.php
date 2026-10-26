@@ -1,6 +1,12 @@
 <?php
-session_start();
+
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 require_once('database.php');
+$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 if (!isset($_SESSION['userID'])) {
     header('Location: login.php');
@@ -61,8 +67,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <h2>Add Child</h2>
 
         <?php if ($error !== ''): ?>
+           
             <p><?php echo htmlspecialchars($error); ?></p>
         <?php endif; ?>
+        
 
         <form action="add_child.php" method="post">
             <label for="childName">Child’s Name:</label>
