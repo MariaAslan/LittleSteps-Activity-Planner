@@ -11,6 +11,9 @@ if (!isset($_SESSION['userID'])) {
 }
 
 $fullName = $_SESSION['fullName'] ?? 'Parent';
+if (empty($_SESSION['csrfToken'])) {
+    $_SESSION['csrfToken'] = bin2hex(random_bytes(32));
+}
 
 $query = 'SELECT activities.activityID,
                  activities.activityName,
@@ -266,6 +269,21 @@ function escapeHtml($value)
                                 </p>
 
                                 <span class="reminder-status">Pending</span>
+                                <form action="complete_reminder.php" method="post">
+    <input
+        type="hidden"
+        name="reminderID"
+        value="<?php echo (int) $reminder['reminderID']; ?>"
+    >
+
+    <input
+        type="hidden"
+        name="csrfToken"
+        value="<?php echo escapeHtml($_SESSION['csrfToken']); ?>"
+    >
+
+    <button type="submit">Mark as Completed</button>
+</form>
                             </article>
                         <?php endforeach; ?>
                     <?php endif; ?>
