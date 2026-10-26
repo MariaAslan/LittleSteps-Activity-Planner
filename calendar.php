@@ -15,6 +15,28 @@ if (!$month) {
     $month = new DateTime('first day of this month');
 }
 
+$timezone = new DateTimeZone('America/Toronto');
+$currentMonth = new DateTime('first day of this month', $timezone);
+$monthValue = $_GET['month'] ?? $currentMonth->format('Y-m');
+$month = false;
+
+if (
+    is_string($monthValue) &&
+    preg_match('/^[0-9]{4}-(0[1-9]|1[0-2])$/D', $monthValue) &&
+    (int) substr($monthValue, 0, 4) >= 1000 &&
+    (int) substr($monthValue, 0, 4) <= 9999
+) {
+    $month = DateTime::createFromFormat(
+        '!Y-m',
+        $monthValue,
+        $timezone
+    );
+}
+
+if (!$month) {
+    $month = $currentMonth;
+}
+
 $monthStart = $month->format('Y-m-01');
 $monthEnd = $month->format('Y-m-t');
 
@@ -67,11 +89,13 @@ $nextMonth->modify('+1 month');
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
     <title>Calendar - LittleSteps</title>
     <link rel="stylesheet" href="CSS/style.css">
 
     <style>
+        
         table {
             border-collapse: collapse;
             width: 100%;
@@ -94,6 +118,13 @@ $nextMonth->modify('+1 month');
             margin-top: 5px;
             padding: 5px;
         }
+        table {
+    min-width: 700px;
+}
+
+.activity {
+    overflow-wrap: anywhere;
+}
     </style>
 </head>
 
@@ -123,7 +154,7 @@ $nextMonth->modify('+1 month');
                 Next
             </a>
         </p>
-
+<div style="overflow-x: auto;">
         <table>
             <tr>
                 <th>Sun</th>
@@ -202,6 +233,7 @@ $nextMonth->modify('+1 month');
                 <?php endfor; ?>
             </tr>
         </table>
+        </div>
     </main>
 </body>
 </html>
