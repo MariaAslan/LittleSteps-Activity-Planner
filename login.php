@@ -1,5 +1,5 @@
 <?php
-session_start();
+require_once __DIR__ . '/session.php';
 require_once('database.php');
 
 $error = '';
@@ -19,6 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $statement->closeCursor();
 
     if ($user && password_verify($password, $user['password'])) {
+        session_regenerate_id(true);
         $_SESSION['userID'] = $user['userID'];
         $_SESSION['fullName'] = $user['fullName'];
 

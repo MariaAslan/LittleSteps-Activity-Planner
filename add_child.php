@@ -2,7 +2,7 @@
 
 
 if (session_status() === PHP_SESSION_NONE) {
-    session_start();
+    require_once __DIR__ . '/session.php';
 }
 
 require_once('database.php');
